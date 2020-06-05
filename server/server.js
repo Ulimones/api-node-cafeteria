@@ -5,14 +5,16 @@ const bodyParser = require('body-parser');
 
 
 const app = express();
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(require('./routes/usuario'));
+
 
 // parse application/json
 app.use(bodyParser.json())
 
-
+//Configuración global de rutas
+app.use(require('./routes/index'));
 
 mongoose.connect(process.env.uDB, {
         useNewUrlParser: true,
