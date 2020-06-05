@@ -1,51 +1,32 @@
 require('./config/config');
 const express = require('express');
-const app = express();
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+
+const app = express();
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(require('./routes/usuario'));
 
 // parse application/json
 app.use(bodyParser.json())
 
 
 
-app.get('/', function(req, res) {
-    res.json('Hello World')
-})
+mongoose.connect(process.env.uDB, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+    },
+    (err, res) => {
 
-app.get('/usuario', function(req, res) {
-    res.json('get user')
-})
-
-
-app.post('/usuario', function(req, res) {
-    // res.json('post user')
-    let body = req.body;
-    if (body.nombre === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: 'El nombre es necesario'
-        })
-
-    } else {
-        res.json({ persona: body });
-        // res.end(JSON.stringify(req.body, null, 2))        
-    }
-
-})
-
-app.put('/usuario/:id', function(req, res) {
-    let id = req.params.id;
-    res.json({
-        id
+        if (err) throw err;
+        console.log('Base de datos en linea...');
     });
-})
 
-app.delete('/usuario', function(req, res) {
-    res.json('delete user')
-})
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Escuchando en el puerto ${process.env.PORT}`)
