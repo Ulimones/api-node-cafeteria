@@ -45,7 +45,6 @@ app.get('/usuario', [verificaToken, verificaAdmin_Role], (req, res) => {
         })
 })
 
-
 app.post('/usuario', verificaToken, function(req, res) {
     // res.json('post user')
     let body = req.body;

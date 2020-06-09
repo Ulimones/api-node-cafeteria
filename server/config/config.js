@@ -32,7 +32,7 @@ Vencimiento del token
 // 60 minutos
 // 24 horas
 // 30 días
-process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
+process.env.CADUCIDAD_TOKEN = '48h';
 
 
 
@@ -40,3 +40,9 @@ process.env.CADUCIDAD_TOKEN = 60 * 60 * 24 * 30;
 // SEED de autenticación
 // ========================================
 process.env.SEED = process.env.SEED || 'este-es-el-seed-de-producion';
+
+
+// =========================================
+// Foogle Cliente ID
+// ========================================
+process.env.CLIENT_ID = process.env.CLIENT_ID || '203336614597-gj6icnosn3dnipbis16mp0to7jhtji8s.apps.googleusercontent.com';
